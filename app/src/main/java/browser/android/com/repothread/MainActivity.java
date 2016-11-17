@@ -12,5 +12,6 @@ public class MainActivity extends AppCompatActivity {
         ThreadUtils.createThread();
         ThreadUtils.createThreadRunnable();
         ThreadUtils.createThreadCallable();
+        ThreadUtils.createProduceConsume();
     }
 }

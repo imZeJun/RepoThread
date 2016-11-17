@@ -18,7 +18,6 @@ public class ThreadUtils {
 
     private static final String TAG = "ThreadUtils";
 
-
     public static void createThread() {
         Thread thread = new MyThread();
         thread.start();
@@ -56,6 +55,14 @@ public class ThreadUtils {
                 print(futureTask2);
             }
         }, 300);
+    }
+
+    public static void createProduceConsume() {
+        WareHouse wareHouse = new WareHouse();
+        Thread producerThread = new Thread(new Producer(wareHouse, "producer"));
+        Thread consumerThread = new Thread(new Consumer(wareHouse, "consumer"));
+        producerThread.start();
+        consumerThread.start();
     }
 
     private static void print(Future<String> futureTask) {
