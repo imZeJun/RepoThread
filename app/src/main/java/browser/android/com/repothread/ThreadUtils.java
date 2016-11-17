@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.locks.Condition;
 
 /**
  * Created by lizejun on 2016/11/16.
@@ -58,7 +59,7 @@ public class ThreadUtils {
     }
 
     public static void createProduceConsume() {
-        WareHouse wareHouse = new WareHouse();
+        ConditionWareHouse wareHouse = new ConditionWareHouse();
         Thread producerThread = new Thread(new Producer(wareHouse, "producer"));
         Thread consumerThread = new Thread(new Consumer(wareHouse, "consumer"));
         producerThread.start();

@@ -13,10 +13,10 @@ public class Producer implements Runnable {
     private static final String TAG = "Producer";
     private static final long MAX_SLEEP_GAP = 100;
 
-    private WareHouse mWareHouse;
+    private ConditionWareHouse mWareHouse;
     private String mProducerName;
 
-    public Producer(WareHouse wareHouse, String producerName) {
+    public Producer(ConditionWareHouse wareHouse, String producerName) {
         this.mWareHouse = wareHouse;
         this.mProducerName = producerName;
     }
