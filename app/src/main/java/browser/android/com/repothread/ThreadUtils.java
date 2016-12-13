@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 
 /**
  * Created by lizejun on 2016/11/16.
@@ -64,6 +65,34 @@ public class ThreadUtils {
         Thread consumerThread = new Thread(new Consumer(wareHouse, "consumer"));
         producerThread.start();
         consumerThread.start();
+    }
+
+    public static void createTwinsLock() {
+        final Lock lock = new TwinsLock();
+        class TwinsLockThread extends Thread {
+
+            @Override
+            public void run() {
+                Log.d(TAG, "TwinsLockThread, run=" + Thread.currentThread().getName());
+                while (true) {
+                    lock.lock();
+                    try {
+                        Thread.sleep(1000);
+                        Log.d(TAG, "TwinsLockThread, name=" + Thread.currentThread().getName());
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        Log.d(TAG, "TwinsLockThread, unlock=" + Thread.currentThread().getName());
+                        lock.unlock();
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            Thread thread = new TwinsLockThread();
+            thread.start();
+        }
     }
 
     private static void print(Future<String> futureTask) {

@@ -9,9 +9,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ThreadUtils.createThread();
-        ThreadUtils.createThreadRunnable();
-        ThreadUtils.createThreadCallable();
-        ThreadUtils.createProduceConsume();
+        //ThreadUtils.createThread();
+        //ThreadUtils.createThreadRunnable();
+        //ThreadUtils.createThreadCallable();
+        //ThreadUtils.createProduceConsume();
+        ThreadUtils.createTwinsLock();
     }
 }
